@@ -1,4 +1,7 @@
 
+using Microsoft.EntityFrameworkCore;
+using RECIPE_MANAGEMENT_SYSTEM.Data;
+
 namespace Food_Recipe_API
 {
     public class Program
@@ -13,6 +16,9 @@ namespace Food_Recipe_API
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+            builder.Services.AddDbContext<RecipeDBContext>(options => {
+                options.UseSqlServer(builder.Configuration.GetConnectionString("RecipeAPIDBConnection"));
+            });
 
             var app = builder.Build();
 
