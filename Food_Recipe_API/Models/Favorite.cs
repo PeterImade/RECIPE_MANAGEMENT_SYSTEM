@@ -3,7 +3,7 @@
 namespace Food_Recipe_API.Models
 {
     [Table("FavoriteRecipes")]
-    public class Favorite: BaseModel
+    public class Favorite
     {
         public string Title { get; set; }
         public Guid RecipeId { get; set; }

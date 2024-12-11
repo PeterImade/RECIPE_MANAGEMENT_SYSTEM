@@ -12,6 +12,7 @@ namespace Food_Recipe_API.Models
         public List<string> Ingredients { get; set; }
         public virtual ICollection<Rating> Ratings { get; set; }
         public virtual ICollection<Comment> Comments { get; set; }
+        public virtual ICollection<Notification> Notifications { get; set; }
         public virtual ICollection<Favorite> FavoriteRecipes { get; set; }
         public Guid? UserId { get; set; }
         public Guid CategoryId { get; set; }
