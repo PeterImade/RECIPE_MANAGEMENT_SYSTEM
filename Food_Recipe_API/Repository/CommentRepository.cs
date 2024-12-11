@@ -4,7 +4,7 @@ using RECIPE_MANAGEMENT_SYSTEM.Data;
 
 namespace RECIPE_MANAGEMENT_SYSTEM.Repository
 {
-    public class CommentRepository : GenericRepository<Comment>, IGenericRepository<Comment>
+    public class CommentRepository : GenericRepository<Comment>, ICommentRepository
     {
         public CommentRepository(RecipeDBContext recipeDBContext): base(recipeDBContext)
         {
