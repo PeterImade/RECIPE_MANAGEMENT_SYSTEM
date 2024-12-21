@@ -1,4 +1,5 @@
 
+
 using Microsoft.EntityFrameworkCore;
 using RECIPE_MANAGEMENT_SYSTEM.Contracts;
 using RECIPE_MANAGEMENT_SYSTEM.Data;
@@ -30,6 +31,7 @@ namespace Food_Recipe_API
             builder.Services.AddScoped<IFavoriteRepository, FavoriteRepository>();
             builder.Services.AddScoped<ICommentRepository, CommentRepository>();
             builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+            builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
             
             var app = builder.Build();
 
