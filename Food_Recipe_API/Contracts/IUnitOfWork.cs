@@ -7,12 +7,10 @@ namespace RECIPE_MANAGEMENT_SYSTEM.Contracts
         IUserRepository Users { get; }
         IRecipeRepository Recipes { get; }
         IRatingRepository Ratings { get;  }
-        INotificationRepository Notifications { get;  }
-        IFollowRepository Follows { get;  }
-        IFavoriteRepository Favorites { get;  }
+        INotificationRepository Notifications { get;  }  
         ICommentRepository Comments { get;  }
         ICategoryRepository Categories { get;  }
 
-        Task CommitAndSaveAsync();
+        Task SaveAsync();
     }
 }

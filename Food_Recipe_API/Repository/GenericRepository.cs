@@ -15,63 +15,14 @@ namespace RECIPE_MANAGEMENT_SYSTEM.Repository
             _dbContext = recipeDBContext;
             _dbSet = _dbContext.Set<T>();
         }
-        public async Task<T> CreateAsync(T entity)
-        { 
-            await _dbSet.AddAsync(entity);
-            await SaveAsync();
-            return entity;
-        }
 
-        public async Task DeleteAsync(T entity)
-        {
-            _dbSet.Remove(entity);
-            await SaveAsync();
-        }
+        public void Create(T entity) => _dbSet.Add(entity);
+         
+        public void Delete(T entity) => _dbSet.Remove(entity);
+        public IQueryable<T> FindAll(bool trackChanges) => !trackChanges ? _dbSet.AsNoTracking() : _dbSet;
 
-        public async Task<List<T>> GetAllAsync(Expression<Func<T, bool>> expression = null, bool tracked = true)
-        {
-            IQueryable<T> query = _dbSet;
+        public IQueryable<T> FindByCondition(Expression<Func<T, bool>> expression, bool trackChanges) => !trackChanges ? _dbSet.Where(expression).AsNoTracking() : _dbSet.Where(expression);
 
-            if (!tracked)
-            {
-                query = query.AsNoTracking();
-            }
-
-            if (expression != null)
-            {
-                query = query.Where(expression);
-            }
-
-            return await query.ToListAsync(); 
-        }
-
-        public async Task<T> GetAsync(Expression<Func<T, bool>> expression = null, bool tracked = true)
-        {
-            IQueryable<T> query = _dbSet;
-
-            if (!tracked)
-            {
-                query = query.AsNoTracking();
-            }
-
-            if (expression != null)
-            {
-                query = query.Where(expression);
-            }
-
-            return await query.FirstOrDefaultAsync();
-        }
-
-        public async Task SaveAsync()
-        {
-            await _dbContext.SaveChangesAsync();
-        }
-
-        public async Task<T> UpdateAsync(T entity)
-        {
-            _dbSet.Update(entity);
-            await SaveAsync();
-            return entity;
-        }
+        public void Update(T entity) => _dbSet.Update(entity);
     }
 }

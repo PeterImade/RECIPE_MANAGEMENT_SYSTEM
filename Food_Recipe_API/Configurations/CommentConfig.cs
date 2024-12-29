@@ -10,22 +10,17 @@ namespace RECIPE_MANAGEMENT_SYSTEM.Configurations
         {
             builder.ToTable("Comments");
             builder.HasKey(x => x.Id);
-            builder.Property(x => x.Id).HasDefaultValueSql("NEWID()");
-
-            //In Entity Framework, when configuring relationships using the Fluent API, the configuration is typically done in the entity that holds the foreign key
             builder
                 .HasOne(x => x.User)
                 .WithMany(x => x.Comments)
                 .HasForeignKey(x => x.UserId)
-                .IsRequired()
-                .OnDelete(DeleteBehavior.Cascade);
-            
+                .IsRequired();
+
             builder
                 .HasOne(x => x.Recipe)
                 .WithMany(x => x.Comments)
                 .HasForeignKey(x => x.RecipeId)
-                .IsRequired()
-                .OnDelete(DeleteBehavior.Cascade);
+                .IsRequired();
         }
     }
 }

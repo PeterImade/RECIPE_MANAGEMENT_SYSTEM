@@ -2,13 +2,12 @@
 
 namespace RECIPE_MANAGEMENT_SYSTEM.Contracts
 {
-    public interface IGenericRepository<T> where T : class
+    public interface IGenericRepository<T>
     {
-        Task<T> CreateAsync(T entity);
-        Task<T> UpdateAsync(T entity);
-        Task DeleteAsync(T entity);
-        Task<T> GetAsync(Expression<Func<T, bool>> expression = null, bool tracked = true);
-        Task<List<T>> GetAllAsync(Expression<Func<T, bool>> expression = null, bool tracked = true);
-        Task SaveAsync();
+        IQueryable<T> FindAll(bool trackChanges);
+        IQueryable<T> FindByCondition(Expression<Func<T, bool>> expression, bool trackChanges);
+        void Create(T entity);
+        void Update(T entity);
+        void Delete(T entity);
     }
 }
